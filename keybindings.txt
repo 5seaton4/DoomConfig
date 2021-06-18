@@ -1,0 +1,67 @@
+SPC p p : pick a project.
+
+SPC SPC : Pick a file.
+
+Ctrl-J/K : move down buffer selections.
+
+SPC , : switch to buffer.
+
+SPC w v : create a vertical split.
+SPC w v : create a vertical split and follow.
+
+SPC w s : create a horizontal split.
+SPC w S : create a horizontal split and follow.
+
+SPC w Ctrl-H/J/K/L : move between buffers.
+
+SPC w c : Get rid of current buffer.
+
+
+Project explorer:
+
+SPC o p : open project explorer.
+o s : open file in horizontal view.
+o v : open file in vertical view.
+
+Vim movement:
+
+gsj and gsk : vim easy motion
+
+s letters.. : go to place in line
+
+gc : comment out block
+
+dii : delete everything on that indent.
+
+
+F1 k : describe key map
+
+SPC s i : Tagbar
+
+
+C-x u  : undo tree
+
+M-x speed-bar
+
+
+M-x diff-buffer-with-file
+M-x ediff-revision
+
+
+How to install emacs
+
+sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
+sudo apt install gcc-10 g++-10 libgccjit0 libgccjit-10-dev libjansson4 libjansson-dev
+
+
+git clone https://git.savannah.gnu.org/git/emacs.git
+git checkout -b native-comp origin/feature/native-comp
+export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
+./autogen.sh
+./configure --with-cairo --with-modules --without-compress-install --with-x-toolkit=no --with-gnutls --without-gconf --without-xwidgets --without-toolkit-scroll-bars --without-xaw3d --without-gsettings --with-mailutils --with-native-compilation --with-json --with-harfbuzz --with-imagemagick --with-jpeg --with-png --with-rsvg --with-tiff --with-wide-int --with-xft --with-xml2 --with-xpm CFLAGS="-O3 -mtune=native -march=native -fomit-frame-pointer" prefix=/usr/local
+
+
+{number of cores} = grep 'cpu cores' /proc/cpuinfo | uniq
+
+make -j{number of cores} NATIVE_FULL_AOT=1
+make install
