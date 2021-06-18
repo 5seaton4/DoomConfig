@@ -158,10 +158,10 @@
 
 (map!
       ;; Swapping windows
-      "C-<left>"       #'+evil/window-move-left
-      "C-<down>"       #'+evil/window-move-down
-      "C-<up>"         #'+evil/window-move-up
-      "C-<right>"      #'+evil/window-move-right)
+      "C-<left>"       #'split-window-right
+      "C-<down>"       #'split-window-vertically
+      "C-<up>"         #'split-window-below
+      "C-<right>"      #'split-window-horizontally)
 
 (setq-default history-length 1000) ;The maximum length of the minibuffer history.
 (setq-default prescient-history-length 1000) ;The number of recently selected candidates that are displayed at the top of the list.
@@ -281,6 +281,16 @@
 ;TODO Have treemacs close window when file is opened.
 
 (evil-visual-mark-mode 1)
+
+;; Show the current function name in the header line
+(which-function-mode)
+ (setq-default header-line-format
+               '((which-func-mode ("" which-func-format " "))))
+ (setq mode-line-misc-info
+;;             ;; We remove Which Function Mode from the mode line, because it's mostly
+;;             ;; invisible here anyway.
+             (assq-delete-all 'which-func-mode mode-line-misc-info))
+
 
 ;TODO List
 ;
